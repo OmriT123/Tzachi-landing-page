@@ -851,6 +851,13 @@
                 const result = await response.json();
 
                 if (result.success) {
+                    // Track form submission for GTM/GA4/Google Ads
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'form_submission',
+                        'form_name': 'contact_form'
+                    });
+
                     // Hide form and show success message
                     contactForm.style.display = 'none';
                     formSuccess.classList.remove('hidden');
