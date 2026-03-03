@@ -244,6 +244,149 @@
                 font-size: 6rem;
             }
         }
+
+        /* Video containers */
+        .video-portrait-container {
+            position: relative;
+            aspect-ratio: 9 / 16;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            background: #000;
+            cursor: pointer;
+            max-height: 500px;
+        }
+
+        .video-portrait-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-review-container {
+            position: relative;
+            aspect-ratio: 9 / 16;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            background: #000;
+            cursor: pointer;
+            max-height: 480px;
+            margin: 0 auto;
+        }
+
+        .video-review-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Play button overlay */
+        .video-play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.25);
+            transition: background 0.3s ease;
+            z-index: 10;
+        }
+
+        .video-play-overlay:hover {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .video-play-overlay.hidden {
+            display: none;
+        }
+
+        .video-play-btn {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .video-play-btn:hover {
+            transform: scale(1.1);
+            background: #fff;
+        }
+
+        .video-play-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: #B24124;
+            margin-left: 3px;
+        }
+
+        /* Reviews carousel */
+        .reviews-carousel {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 0.5rem;
+        }
+
+        .reviews-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .reviews-carousel .review-card {
+            flex: 0 0 70%;
+            scroll-snap-align: center;
+            max-width: 300px;
+        }
+
+        @media (min-width: 768px) {
+            .reviews-carousel {
+                display: flex;
+                justify-content: center;
+                overflow-x: visible;
+                scroll-snap-type: none;
+                gap: 2rem;
+            }
+
+            .reviews-carousel .review-card {
+                flex: 0 0 auto;
+                width: 280px;
+                max-width: 280px;
+            }
+        }
+
+        /* Carousel dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding-top: 1rem;
+        }
+
+        .carousel-dots .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d1d5db;
+            transition: background 0.3s ease;
+        }
+
+        .carousel-dots .dot.active {
+            background: #B24124;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-dots {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -350,22 +493,39 @@
                     <span class="text-primary">(ומה זה לא)</span>
                 </h2>
 
-                <div class="space-y-6 text-lg text-gray-600 leading-relaxed max-w-3xl relative">
-                    <p>
-                        MRI עסקי הוא <strong class="text-gray-800">מיפוי עומק ממוקד של העסק שלך.</strong>
-                    </p>
-                    <p>
-                        לא ייעוץ, לא ליווי, ולא מצגת יפה.
-                    </p>
-                    <p>
-                        בדומה ל-MRI רפואי: לא מטפלים בסימפטומים, אלא רואים שכבה-שכבה מה באמת קורה בפנים.
-                    </p>
-                    <p>
-                        המטרה אינה "לתקן הכול", אלא:
-                    </p>
-                    <p class="text-primary font-semibold text-xl pt-4 border-t border-gray-100">
-                        • לזהות את צווארי הבקבוק האמיתיים • לחדד החלטות שאי אפשר לדחות • ולהחזיר לך שליטה, פוקוס ושקט ניהולי
-                    </p>
+                <div class="flex flex-col md:flex-row-reverse gap-8 md:gap-12 relative">
+                    <!-- Video column (left on desktop in RTL) -->
+                    <div class="md:w-[38%] flex-shrink-0">
+                        <div class="video-portrait-container mx-auto" style="max-width: 280px;">
+                            <div class="video-play-overlay" onclick="playVideo(this)">
+                                <div class="video-play-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <video preload="metadata" playsinline poster="./videos/poster-tzachi.jpg" onclick="toggleVideo(this)">
+                                <source src="./videos/tzachi-explainer.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <!-- Text column -->
+                    <div class="md:w-[62%] space-y-6 text-lg text-gray-600 leading-relaxed">
+                        <p>
+                            MRI עסקי הוא <strong class="text-gray-800">מיפוי עומק ממוקד של העסק שלך.</strong>
+                        </p>
+                        <p>
+                            לא ייעוץ, לא ליווי, ולא מצגת יפה.
+                        </p>
+                        <p>
+                            בדומה ל-MRI רפואי: לא מטפלים בסימפטומים, אלא רואים שכבה-שכבה מה באמת קורה בפנים.
+                        </p>
+                        <p>
+                            המטרה אינה "לתקן הכול", אלא:
+                        </p>
+                        <p class="text-primary font-semibold text-xl pt-4 border-t border-gray-100">
+                            • לזהות את צווארי הבקבוק האמיתיים • לחדד החלטות שאי אפשר לדחות • ולהחזיר לך שליטה, פוקוס ושקט ניהולי
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -589,6 +749,59 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="max-w-6xl mx-auto px-4 pb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">מה אומרים עליי</h2>
+                <div class="decorative-line mx-auto"></div>
+            </div>
+
+            <div class="reviews-carousel">
+                <!-- Review Card: Roni -->
+                <div class="review-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover-lift">
+                        <div class="video-review-container">
+                            <div class="video-play-overlay" onclick="playVideo(this)">
+                                <div class="video-play-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <video preload="metadata" playsinline poster="./videos/poster-roni.jpg" onclick="toggleVideo(this)">
+                                <source src="./videos/review-roni.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="p-4 text-center">
+                            <p class="font-semibold text-gray-900">רוני</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card: Roei -->
+                <div class="review-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover-lift">
+                        <div class="video-review-container">
+                            <div class="video-play-overlay" onclick="playVideo(this)">
+                                <div class="video-play-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <video preload="metadata" playsinline poster="./videos/poster-roei.jpg" onclick="toggleVideo(this)">
+                                <source src="./videos/review-roei.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="p-4 text-center">
+                            <p class="font-semibold text-gray-900">רואי</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-dots" id="reviewDots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
             </div>
         </section>
 
@@ -885,6 +1098,56 @@
                 btnSpinner.classList.add('hidden');
             }
         });
+
+        // ===== Video Player Controls =====
+        function playVideo(overlay) {
+            const container = overlay.parentElement;
+            const video = container.querySelector('video');
+            overlay.classList.add('hidden');
+            video.play();
+        }
+
+        function toggleVideo(video) {
+            const overlay = video.parentElement.querySelector('.video-play-overlay');
+            if (video.paused) {
+                overlay.classList.add('hidden');
+                video.play();
+            } else {
+                video.pause();
+                overlay.classList.remove('hidden');
+            }
+        }
+
+        // Re-show play overlay when video ends, add controls on play
+        document.querySelectorAll('.video-portrait-container video, .video-review-container video').forEach(function(video) {
+            video.addEventListener('ended', function() {
+                const overlay = video.parentElement.querySelector('.video-play-overlay');
+                if (overlay) overlay.classList.remove('hidden');
+                video.removeAttribute('controls');
+            });
+            video.addEventListener('play', function() {
+                video.setAttribute('controls', '');
+            });
+        });
+
+        // ===== Mobile Carousel Dot Indicator =====
+        (function() {
+            const carousel = document.querySelector('.reviews-carousel');
+            const dots = document.querySelectorAll('#reviewDots .dot');
+            if (carousel && dots.length > 0) {
+                carousel.addEventListener('scroll', function() {
+                    const scrollPos = Math.abs(carousel.scrollLeft);
+                    const card = carousel.querySelector('.review-card');
+                    if (card) {
+                        const cardWidth = card.offsetWidth + 16; // gap
+                        const activeIndex = Math.round(scrollPos / cardWidth);
+                        dots.forEach(function(dot, i) {
+                            dot.classList.toggle('active', i === activeIndex);
+                        });
+                    }
+                });
+            }
+        })();
     </script>
 </body>
 </html>
