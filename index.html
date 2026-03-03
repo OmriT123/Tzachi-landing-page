@@ -248,12 +248,9 @@
         /* Video containers */
         .video-portrait-container {
             position: relative;
-            border-radius: 0.75rem;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
             background: #000;
             cursor: pointer;
-            height: 100%;
         }
 
         .video-portrait-container video {
@@ -484,18 +481,11 @@
 
         <!-- What is Business MRI Section -->
         <section class="max-w-6xl mx-auto px-4 pb-16">
-            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 relative overflow-hidden">
-                <span class="quote-mark top-4 right-8">"</span>
-
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8 relative">
-                    מה זה MRI עסקי
-                    <span class="text-primary">(ומה זה לא)</span>
-                </h2>
-
-                <div class="flex flex-col md:flex-row-reverse gap-8 md:gap-12 relative">
-                    <!-- Video column (left on desktop in RTL) -->
-                    <div class="md:w-[30%] flex-shrink-0 self-stretch">
-                        <div class="video-portrait-container h-full">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden relative">
+                <div class="md:flex md:flex-row-reverse">
+                    <!-- Video column — flush against card edge, like the About photo -->
+                    <div class="md:flex-shrink-0">
+                        <div class="video-portrait-container h-72 w-full md:h-full md:w-72 lg:w-80">
                             <div class="video-play-overlay" onclick="playVideo(this)">
                                 <div class="video-play-btn">
                                     <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -508,24 +498,33 @@
                     </div>
 
                     <!-- Text column -->
-                    <div class="md:w-[62%] space-y-6 text-lg text-gray-600 leading-relaxed">
-                        <p>
-                            MRI עסקי הוא <strong class="text-gray-800">מיפוי עומק ממוקד של העסק שלך.</strong>
-                        </p>
-                        <p>
-                            לא ייעוץ, לא ליווי, ולא מצגת יפה.
-                        </p>
-                        <p>
-                            בדומה ל-MRI רפואי: לא מטפלים בסימפטומים, אלא רואים שכבה-שכבה מה באמת קורה בפנים.
-                        </p>
-                        <p>
-                            המטרה אינה "לתקן הכול", אלא:
-                        </p>
-                        <ul class="text-primary font-semibold text-xl pt-4 border-t border-gray-100 space-y-2 list-none">
-                            <li>• לזהות את צווארי הבקבוק האמיתיים</li>
-                            <li>• לחדד החלטות שאי אפשר לדחות</li>
-                            <li>• ולהחזיר לך שליטה, פוקוס ושקט ניהולי</li>
-                        </ul>
+                    <div class="p-8 md:p-12">
+                        <span class="quote-mark top-4 right-8">"</span>
+
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8 relative">
+                            מה זה MRI עסקי
+                            <span class="text-primary">(ומה זה לא)</span>
+                        </h2>
+
+                        <div class="space-y-6 text-lg text-gray-600 leading-relaxed">
+                            <p>
+                                MRI עסקי הוא <strong class="text-gray-800">מיפוי עומק ממוקד של העסק שלך.</strong>
+                            </p>
+                            <p>
+                                לא ייעוץ, לא ליווי, ולא מצגת יפה.
+                            </p>
+                            <p>
+                                בדומה ל-MRI רפואי: לא מטפלים בסימפטומים, אלא רואים שכבה-שכבה מה באמת קורה בפנים.
+                            </p>
+                            <p>
+                                המטרה אינה "לתקן הכול", אלא:
+                            </p>
+                            <ul class="text-primary font-semibold text-xl pt-4 border-t border-gray-100 space-y-2 list-none">
+                                <li>• לזהות את צווארי הבקבוק האמיתיים</li>
+                                <li>• לחדד החלטות שאי אפשר לדחות</li>
+                                <li>• ולהחזיר לך שליטה, פוקוס ושקט ניהולי</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
