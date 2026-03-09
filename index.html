@@ -797,10 +797,30 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Review Card: Vered -->
+                <div class="review-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover-lift">
+                        <div class="video-review-container">
+                            <div class="video-play-overlay" onclick="playVideo(this)">
+                                <div class="video-play-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <video preload="metadata" playsinline poster="./videos/poster-vered.jpg" onclick="toggleVideo(this)">
+                                <source src="./videos/review-vered.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="p-4 text-center">
+                            <p class="font-semibold text-gray-900">ורד חורי</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="carousel-dots" id="reviewDots">
                 <span class="dot active"></span>
+                <span class="dot"></span>
                 <span class="dot"></span>
             </div>
         </section>
