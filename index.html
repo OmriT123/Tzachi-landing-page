@@ -353,8 +353,8 @@
 
             .reviews-carousel .review-card {
                 flex: 0 0 auto;
-                width: 280px;
-                max-width: 280px;
+                width: 260px;
+                max-width: 260px;
             }
         }
 
@@ -774,7 +774,8 @@
                             </video>
                         </div>
                         <div class="p-4 text-center">
-                            <p class="font-semibold text-gray-900">רוני</p>
+                            <p class="font-semibold text-gray-900">רוני ארז</p>
+                            <p class="text-sm text-gray-500">אקולוגי מערכות ירוקות</p>
                         </div>
                     </div>
                 </div>
@@ -793,7 +794,8 @@
                             </video>
                         </div>
                         <div class="p-4 text-center">
-                            <p class="font-semibold text-gray-900">רואי</p>
+                            <p class="font-semibold text-gray-900">רואי דינוביץ</p>
+                            <p class="text-sm text-gray-500">יו"ר ומייסד החברה לפיתוח כלכלה מקומית</p>
                         </div>
                     </div>
                 </div>
@@ -813,6 +815,26 @@
                         </div>
                         <div class="p-4 text-center">
                             <p class="font-semibold text-gray-900">ורד חורי</p>
+                            <p class="text-sm text-gray-500">מנכ"ל ובעלים חברת Ewise</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review Card: Sivan -->
+                <div class="review-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden hover-lift">
+                        <div class="video-review-container">
+                            <div class="video-play-overlay" onclick="playVideo(this)">
+                                <div class="video-play-btn">
+                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <video preload="metadata" playsinline poster="./videos/poster-sivan.jpg" onclick="toggleVideo(this)">
+                                <source src="./videos/review-sivan.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="p-4 text-center">
+                            <p class="font-semibold text-gray-900">סיון חימי</p>
+                            <p class="text-sm text-gray-500">סטייליסטית</p>
                         </div>
                     </div>
                 </div>
@@ -820,6 +842,7 @@
 
             <div class="carousel-dots" id="reviewDots">
                 <span class="dot active"></span>
+                <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
             </div>
